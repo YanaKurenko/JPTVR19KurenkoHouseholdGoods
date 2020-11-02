@@ -1,5 +1,5 @@
 
-package tools;
+package tools.savers;
 
 import entity.Product;
 import java.io.FileInputStream;
@@ -15,7 +15,7 @@ import java.io.ObjectOutputStream;
  */
 public class ProductSaver {
 
-    public void saveProduct(Product[] products) {
+    public void saveProducts(Product[] products) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         try {
@@ -31,7 +31,7 @@ public class ProductSaver {
     }
 
     public Product[] loadProducts() {
-        Product[] products = null;
+        Product[] products = new Product[10];
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         try {
@@ -48,4 +48,6 @@ public class ProductSaver {
         return products;
     
     }
+
+
 }

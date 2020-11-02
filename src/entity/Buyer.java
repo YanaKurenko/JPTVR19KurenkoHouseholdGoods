@@ -1,7 +1,9 @@
 
 package entity;
 
-public class Buyer {
+import java.io.Serializable;
+
+public class Buyer implements Serializable{
     private String firstname;
     private String lastname;
     private String phone;

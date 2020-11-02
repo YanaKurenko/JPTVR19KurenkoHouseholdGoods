@@ -1,6 +1,9 @@
 
 package entity;
-public class History {
+
+import java.io.Serializable;
+
+public class History implements Serializable{
     private Product product;
     private Buyer buyer;
 
