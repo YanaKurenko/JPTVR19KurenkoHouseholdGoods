@@ -12,20 +12,22 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author pupil
  */
 public class HistorySaver {
-        public void saveHistories(History[] histories) {
+        public void saveHistories(List<History> listHistories) {
        
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         try {
             fos = new FileOutputStream("histories");
             oos = new ObjectOutputStream(fos);
-            oos.writeObject(histories);
+            oos.writeObject(listHistories);
             oos.flush();
         } catch (FileNotFoundException ex) {
             System.out.println("Не найден файл");
@@ -34,8 +36,9 @@ public class HistorySaver {
         }
     }
 
-    public History[] loadHistories() {
+    public List loadHistories() {
         History[] histories = new History[10];
+        List<History> listHistories = new ArrayList<>();
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         try {
@@ -49,7 +52,9 @@ public class HistorySaver {
         } catch (ClassNotFoundException ex) {
             System.out.println("Не найден класс");
         }
-        return histories;
+        return listHistories;
   
     }
+
+
 }

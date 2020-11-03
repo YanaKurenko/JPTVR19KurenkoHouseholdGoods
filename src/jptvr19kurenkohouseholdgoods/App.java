@@ -5,6 +5,8 @@ package jptvr19kurenkohouseholdgoods;
 import entity.Buyer;
 import entity.History;
 import entity.Product;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import tools.creators.BuyerManager;
 import tools.creators.LibraryManager;
@@ -14,19 +16,20 @@ import tools.savers.HistorySaver;
 import tools.savers.ProductSaver;
 
 class App {
-    private Product[] products = new Product[10];
-    private Buyer[] buyers = new Buyer[10];
-    private History[] histories = new History[10];
+    private List<Product> listProducts = new ArrayList<>();
+    private List<Buyer> listBuyers = new ArrayList<>();
+    private List<History> listHistories = new ArrayList<>();
     private ProductManager productManager = new ProductManager();
     private ProductSaver productSaver = new ProductSaver();
     private BuyerManager buyerManager = new BuyerManager();
     private BuyerSaver buyerSaver = new BuyerSaver();
     private LibraryManager libraryManager = new LibraryManager();
     private HistorySaver historySaver = new HistorySaver();
-    public App() {
-        products = productSaver.loadProducts();
-        buyers = buyerSaver.loadBuyers();
-        histories = historySaver.loadHistories();
+
+    public  App() {
+        listProducts = productSaver.loadProducts();
+        listBuyers = buyerSaver.loadBuyers();
+        listHistories = historySaver.loadHistories();
     }
     public void run(){
         boolean repeat = true;
@@ -50,29 +53,29 @@ class App {
                 case "1":
                     System.out.println("--- Добавить новый товар ---");
                     Product product = productManager.createProduct();
-                    productManager.addProductToArray(product,products);
-                    productSaver.saveProducts(products);
+                    productManager.addProductToArray(product,listProducts);
+                    productSaver.saveProducts(listProducts);
                     
                     break;
                 case "2":
                     System.out.println("--- Список товаров ---");
-                    productManager.printListProducts(products);
+                    productManager.printListProducts(listProducts);
                     break;
                 case "3":
                     System.out.println("--- Добавить покупателя ---");
                     Buyer buyer = buyerManager.createBuyer();
-                    buyerManager.addBuyerToArray(buyer,buyers);
-                    buyerSaver.saveBuyers(buyers);
+                    buyerManager.addBuyerToArray(buyer,listBuyers);
+                    buyerSaver.saveBuyers(listBuyers);
                     break;
                 case "4":
                     System.out.println("--- Список покупателей ---");
-                    buyerManager.printListBuyers(buyers);
+                    buyerManager.printListBuyers(listBuyers);
                     break;
                 case "5":
                     System.out.println("--- Купить товар ---");
-                    History history = libraryManager.takeOnProduct(products, buyers);
-                    libraryManager.addHistoryToArray(history,histories);
-                    historySaver.saveHistories(histories);
+                    History history = libraryManager.takeOnProduct(listProducts, listBuyers);
+                    libraryManager.addHistoryToArray(history,listHistories);
+                    historySaver.saveHistories(listHistories);
                     break;
                 default:
                     System.out.println("Нет такой задачи.");

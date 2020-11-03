@@ -12,19 +12,21 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author pupil
  */
 public class BuyerSaver {
-        public void saveBuyers(Buyer[] buyers) {
+        public void saveBuyers(List<Buyer> listBuyers) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         try {
             fos = new FileOutputStream("readers");
             oos = new ObjectOutputStream(fos);
-            oos.writeObject(buyers);
+            oos.writeObject(listBuyers);
             oos.flush();
         } catch (FileNotFoundException ex) {
             System.out.println("Не найден файл");
@@ -33,8 +35,9 @@ public class BuyerSaver {
         }
     }
 
-    public Buyer[] loadBuyers() {
+    public List loadBuyers() {
         Buyer[] buyers = new Buyer[10];
+        List<Buyer> listBuyers = new ArrayList<>();
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         try {
@@ -48,6 +51,6 @@ public class BuyerSaver {
         } catch (ClassNotFoundException ex) {
             System.out.println("Не найден класс");
         }
-        return buyers;
+        return listBuyers;
     }
 }

@@ -2,6 +2,7 @@
 package tools.creators;
 
 import entity.Buyer;
+import java.util.List;
 import java.util.Scanner;
 
 public class BuyerManager {
@@ -20,13 +21,8 @@ public class BuyerManager {
         this.printBuyer(buyer);
         return buyer;
     }
-    public void addBuyerToArray(Buyer buyer, Buyer[] buyers) {
-        for (int i = 0; i < buyers.length; i++) {
-            if(buyers[i] == null){
-                buyers[i] = buyer;
-                break;
-            }
-        }
+    public void addBuyerToArray(Buyer buyer, List<Buyer> listBuyers) {
+        listBuyers.add(buyer);
     }
 
     public void printBuyer(Buyer buyer) {
@@ -37,11 +33,12 @@ public class BuyerManager {
         );
     }
 
-    public void printListBuyers(Buyer[] buyers) {
-        for (int i = 0; i < buyers.length; i++) {
-            if(buyers[i] != null){
-                System.out.println(i+1+". " + buyers[i].toString());
+    public void printListBuyers(List<Buyer> listBuyers) {
+        for (int i = 0; i < listBuyers.size(); i++) {
+            if(listBuyers.get(i) != null){
+                System.out.println(i+1+". " + listBuyers.get(i).toString());
             }
         }
     }
+
 }

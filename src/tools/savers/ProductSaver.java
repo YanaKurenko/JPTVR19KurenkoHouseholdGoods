@@ -8,6 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,13 +17,13 @@ import java.io.ObjectOutputStream;
  */
 public class ProductSaver {
 
-    public void saveProducts(Product[] products) {
+    public void saveProducts(List<Product> listProducts) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         try {
             fos = new FileOutputStream("products");
             oos = new ObjectOutputStream(fos);
-            oos.writeObject(products);
+            oos.writeObject(listProducts);
             oos.flush();
         } catch (FileNotFoundException ex) {
             System.out.println("Не найден файл");
@@ -30,14 +32,15 @@ public class ProductSaver {
         }
     }
 
-    public Product[] loadProducts() {
+    public List loadProducts() {
         Product[] products = new Product[10];
+        List<Product> listProducts = new ArrayList<>();
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         try {
             fis = new FileInputStream("products");
             ois = new ObjectInputStream(fis);
-            products = (Product[]) ois.readObject();
+            listProducts = (List) ois.readObject();
         } catch (FileNotFoundException ex) {
             System.out.println("Не найден файл");
         } catch (IOException ex) {
@@ -45,9 +48,7 @@ public class ProductSaver {
         } catch (ClassNotFoundException ex) {
             System.out.println("Не найден класс");
         }
-        return products;
+        return listProducts;
     
     }
-
-
 }

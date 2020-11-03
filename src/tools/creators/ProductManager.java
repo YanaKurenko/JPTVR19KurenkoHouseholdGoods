@@ -2,6 +2,7 @@
 package tools.creators;
 
 import entity.Product;
+import java.util.List;
 import java.util.Scanner;
 
 public class ProductManager {
@@ -18,19 +19,15 @@ public class ProductManager {
         return product;
     
     }
-        public void addProductToArray(Product product, Product[] products) {
-        for (int i = 0; i < products.length; i++) {
-            if(products[i] == null){
-                products[i] = product;
-                break;
-            }
-        }
+        public void addProductToArray(Product product,  List<Product> listProducts) {
+            listProducts.add(product);
     }
-        public void printListProducts(Product[] products) {
-        for (int i = 0; i < products.length; i++) {
-            if(products[i] != null){
-                System.out.println(i+1+". " + products[i].toString());
+        public void printListProducts( List<Product> listProducts) {
+        for (int i = 0; i < listProducts.size(); i++) {
+            if(listProducts.get(i) != null){
+                System.out.println(i+1+". " + listProducts.get(i).toString());
             }
-        }   
+        }  
     }
 }
+
